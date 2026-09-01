@@ -19,11 +19,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set lowercase for image name
+        run: echo "IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/ship-dashboard:latest" >> $GITHUB_ENV
+      - name: Display image name
+        run: echo "Image name ${{ env.IMAGE_NAME }}"
       - uses: docker/build-push-action@v7
         with:
           context: .
           push: true
-          tags: ghcr.io/raaid17/ship-dashboard:latest           
+          tags: ${{ env.IMAGE_NAME }}           
 
 permissions:
   packages: write
