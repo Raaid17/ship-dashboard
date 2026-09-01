@@ -23,8 +23,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/Raaid17/ship-dashboard:latest    
-          
+          tags: ghcr.io/raaid17/ship-dashboard:latest    
+
   deploy:
     needs: build-push
     runs-on: self-hosted
