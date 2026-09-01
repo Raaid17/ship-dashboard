@@ -23,7 +23,14 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/Raaid17/ship-dashboard:latest           
+          tags: ghcr.io/Raaid17/ship-dashboard:latest    
+          
+  deploy:
+    needs: build-push
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker compose up -d --pull always       
 
 permissions:
   packages: write
